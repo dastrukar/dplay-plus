@@ -1,1 +1,3 @@
-int add(int x, int y);
+#include <string>
+
+std::string fetch_config();
