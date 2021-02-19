@@ -1,1 +1,1 @@
-g++ main.cpp -o bin/test
+g++ main.cpp -o bin/dplay+
