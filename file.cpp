@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 
-#include "parser.h"
+#include "file.h"
 
 /*
  * Returns the contents of "dplay.cfg"
