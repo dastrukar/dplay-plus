@@ -1,4 +1,6 @@
 #include <string>
+#include <fstream>
 
-std::string fetch_config();
+std::ifstream fetch_config();
 void create_config(std::string dir);
+bool check_config(std::ifstream& file);

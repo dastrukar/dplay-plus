@@ -5,25 +5,13 @@
 #include "file.h"
 
 /*
- * Returns the contents of "dplay.cfg"
+ * Returns "dplay.cfg"
  */
-std::string fetch_config()
+std::ifstream fetch_config()
 {
-    std::string config = "";
-    std::string temp_string;
     std::ifstream file("dplay.cfg");
 
-    // Check if file exists
-    if (!file.good()) { file.close(); return ""; }
-
-    while (getline(file, temp_string))
-    {
-        config += temp_string;
-    }
-
-    file.close();
-
-    return config;
+    return file;
 }
 
 
@@ -44,4 +32,11 @@ void create_config(std::string dir)
     <<
     "}"
     ;
+}
+
+
+bool check_config(std::ifstream& file)
+{
+    if (file.good()) { return true; }
+    return false;
 }
