@@ -1,5 +1,4 @@
 #include <iostream>
-#include <fstream>
 #include <string>
 
 // include stuff
@@ -9,17 +8,22 @@
 #include "file.h"
 
 
+std::ifstream config;
+
 int main()
 {
-    std::string config = fetch_config();
+    config = fetch_config();
 
-    if (config == "")
+    if (!check_config(config))
     {
-        std::cout << "No config file found.\nCreating a new one.";
+        std::cout << "No config file found.\nCreating a new one.\n";
         create_config("dplay.cfg");
-        config = fetch_config();
-    }
-    std::cout << config;
+        std::cout << "Created config file.\n";
 
+        goto exit;
+    }
+
+    exit:
+    std::cout << "Exiting!\n";
     return 0;
 }
