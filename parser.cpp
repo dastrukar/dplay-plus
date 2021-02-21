@@ -5,45 +5,26 @@
 
 
 /*
- * Returns true, if there's a # at the start of the line
+ * Returns the following values:
+ * 0: If none of the below are true
+ * 1: If the first char is '#'
+ * 2: If the first char is '$'
+ * 3: If the first char is ':'
  */
-bool check_comment(std::string text)
+int check_line_type(std::string text)
 {
-    if (text[0] == '#') { return true; }
+    switch (text[0])
+    {
+        case '#': return 1; break;
+        case '$': return 2; break;
+        case ':': return 3; break;
+    }
 
-    return false;
-}
-
-
-/*
- * Returns true, if there's a : at the start of the line
- */
-bool check_preset(std::string text)
-{
-    if (text[0] == ':') { return true; }
-
-    return false;
-}
-
-
-/*
- * Returns true, if there's a $ at the start of the line
- */
-bool check_variable(std::string text)
-{
-    if (text[0] == '$') { return true; }
-
-    return false;
+    return 0;
 }
 
 
 std::string get_variable(std::string text)
 {
-    if (check_variable(text))
-    {
-        std::string variable;
-        for(int i = 1; i < 6; i++) { variable += text[i]; }
-
-        return variable;
-    }
+    return text;
 }
