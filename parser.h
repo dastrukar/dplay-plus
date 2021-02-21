@@ -1,7 +1,6 @@
 #include <string>
 
-bool check_comment(std::string text); 
-bool check_preset(std::string text);
-bool check_variable(std::string text);
-
-std::string get_variable(std::string text);
+        int check_line_type(std::string str);
+       void print_variable_error(int type);
+std::string get_variable_name(std::string str);
+std::string get_variable_value(std::string str);

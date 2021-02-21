@@ -11,9 +11,9 @@
  * 2: If the first char is '$'
  * 3: If the first char is ':'
  */
-int check_line_type(std::string text)
+int check_line_type(std::string str)
 {
-    switch (text[0])
+    switch (str[0])
     {
         case '#': return 1; break;
         case '$': return 2; break;
@@ -23,8 +23,52 @@ int check_line_type(std::string text)
     return 0;
 }
 
-
-std::string get_variable(std::string text)
+/*
+ * Prints out a message depending on the given type
+ * 0: Invalid variable
+ * 1: Variable is missing '='
+ */
+void print_variable_error(int type)
 {
-    return text;
+    switch (type)
+    {
+        case 0: std::cout << "$Invalid variable, ignoring."; break;
+        case 1: std::cout << "$Variable is missing '=', ignoring."; break;
+    }
+}
+
+std::string get_variable_name(std::string str)
+{
+    std::string var;
+
+    if (str.length() > 8)
+    {
+        for (int i = 1; i < 6; i++)
+        {
+            var += str[i];
+        }
+        return var;
+    }
+    print_variable_error(0);
+    return "";
+}
+
+std::string get_variable_value(std::string str)
+{
+    std::string value;
+            int length = str.length();
+
+    if (length > 8)
+    {
+        if (str[7] == '=') { print_variable_error(1); goto none; }
+
+        for (int i = 8; i <= length; i++)
+        {
+            value += str[i];
+        }
+        return value;
+    }
+
+    none:
+    return "";
 }
