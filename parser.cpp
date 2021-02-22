@@ -43,7 +43,7 @@ std::string get_variable_name(std::string str)
 
     if (str.length() > 8)
     {
-        for (int i = 1; i < 6; i++)
+        for (int i = 1; i <= 6; i++)
         {
             var += str[i];
         }
@@ -60,9 +60,9 @@ std::string get_variable_value(std::string str)
 
     if (length > 8)
     {
-        if (str[7] == '=') { print_variable_error(1); goto none; }
+        if (str[7] != '=') { print_variable_error(1); goto none; }
 
-        for (int i = 8; i <= length; i++)
+        for (int i = 8; i < length; i++)
         {
             value += str[i];
         }
