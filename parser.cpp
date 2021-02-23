@@ -4,6 +4,10 @@
 #include "parser.h"
 
 
+namespace parser
+{
+// Start of namespace "parser"
+
 /*
  * Returns the following values:
  * 0: If none of the below are true
@@ -71,4 +75,7 @@ std::string get_variable_value(std::string str)
 
     none:
     return "";
+}
+
+// End of namespace "parser"
 }
