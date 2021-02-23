@@ -55,22 +55,24 @@ bool check_config(std::ifstream &file)
 
 
 /*
- * Looks for "$SRCPRT=" and returns its value in the config
- * If no "$SRCPRT=" is found, return an empty string
+ * Returns variable value by the given `var`
+ * If no variable is found, return an empty string
+ * Args:
+ * `var`  - Name of the variable
+ * `file` - File to read through
  */
-std::string get_srcprt(std::ifstream &file)
+std::string get_variable_value_by_name(std::string var, std::ifstream &file)
 {
     std::string line;
 
     while (getline(file, line))
     {
-        if (parser::check_line_type(line) == 2 && parser::get_variable_name(line) == "SRCPRT")
+        if (parser::check_line_type(line) == 2 && parser::get_variable_name(line) == var)
         {
             return parser::get_variable_value(line);
         }
     }
 
-    // If no "SRCPRT" is found, return an empty string
     return "";
 }
 

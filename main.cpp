@@ -25,14 +25,11 @@ int main()
     }
 
     // Get the lines from the file, and put them into their respective variables
-    while (getline(config, line))
-    {
-        if (parser::check_line_type(line) == 2)
-        {
-            std::cout << "\n" << parser::get_variable_name(line);
-            std::cout << "\n" << parser::get_variable_value(line);
-        }
-    }
+    std::cout << "\nLooking for SRCPRT variable.";
+    srcprt = file::get_variable_value_by_name("SRCPRT", config);
+
+    if (srcprt == "") { std::cout << "\nNo SRCPRT variable found."; goto exit; }
+    std::cout << "\nSRCPRT=" + srcprt;
 
     exit:
     std::cout << "\nExiting!";
