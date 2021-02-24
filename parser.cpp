@@ -27,6 +27,7 @@ int check_line_type(std::string str)
     return 0;
 }
 
+
 /*
  * Prints out a message depending on the given type
  * 0: Invalid variable
@@ -41,6 +42,10 @@ void print_variable_error(int type)
     }
 }
 
+
+/*
+ * Attempts to return the variable name on the given line.
+ */
 std::string get_variable_name(std::string str)
 {
     std::string var;
@@ -57,6 +62,10 @@ std::string get_variable_name(std::string str)
     return "";
 }
 
+
+/*
+ * Attempts to return the value of a variable from the given string
+ */
 std::string get_variable_value(std::string str)
 {
     std::string value;
@@ -76,6 +85,28 @@ std::string get_variable_value(std::string str)
     none:
     return "";
 }
+
+
+std::string get_preset_name(std::string str)
+{
+    std::string name;
+            int length = str.length();
+
+    for (int i = 1; i < length; i++)
+    {
+        name += str[i];
+    }
+
+    // Remove any excess whitespace/curly brackets
+    for (int i = length - 2; i < length; i--)
+    {
+        if (name[i] == ' ' || name[i] == '{' || name[i] == '}') { name.erase(i); }
+        else { std::cout << "\nbreak!"; break; }
+    }
+
+    return name;
+}
+
 
 // End of namespace "parser"
 }
