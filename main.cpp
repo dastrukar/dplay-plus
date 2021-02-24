@@ -7,7 +7,7 @@
 
 std::ifstream config;
   std::string srcprt,
-              params,
+              preset,
               presets,
               line;
 
@@ -30,6 +30,18 @@ int main()
 
     if (srcprt == "") { std::cout << "\nNo SRCPRT variable found."; goto exit; }
     std::cout << "\nSRCPRT=" + srcprt;
+
+    std::cout << "\nLooking for PRESET variable.";
+    preset = file::get_variable_value_by_name("PRESET", config);
+
+    if (preset != "") 
+    {
+        std::cout << "\nPRESET=" + preset;
+    }
+    else
+    { std::cout << "\nNo PRESET variable found, ignoring all presets."; }
+
+    std::cout << "\n" + file::get_preset(preset, config);
 
     exit:
     std::cout << "\nExiting!";
