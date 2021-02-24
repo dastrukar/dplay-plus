@@ -77,5 +77,22 @@ std::string get_variable_value_by_name(std::string var, std::ifstream &file)
 }
 
 
-// End of namespace "parser"
+std::string get_preset(std::string preset, std::ifstream &file)
+{
+    std::string line;
+    std::string name;
+
+    while (getline(file, line))
+    {
+        if (parser::check_line_type(line) == 3)
+        {
+            name = parser::get_preset_name(line);
+        }
+    }
+
+    return name;
+}
+
+
+// End of namespace "file"
 }
