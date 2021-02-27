@@ -35,7 +35,7 @@ void create_config(std::string dir)
     std::ofstream file(dir);
 
     // Write to file
-    file << 
+    file <<
     "#Example config\n"
     <<
     "this is a file\n"
@@ -67,6 +67,7 @@ std::string get_variable_value_by_name(std::string var, std::ifstream &file)
 
     while (getline(file, line))
     {
+        line = parser::remove_starting_whitespace(line);
         if (parser::check_line_type(line) == 2 && parser::get_variable_name(line) == var)
         {
             return parser::get_variable_value(line);
@@ -84,6 +85,7 @@ std::string get_preset(std::string preset, std::ifstream &file)
 
     while (getline(file, line))
     {
+        line = parser::remove_starting_whitespace(line);
         if (parser::check_line_type(line) == 3)
         {
             name = parser::get_preset_name(line);

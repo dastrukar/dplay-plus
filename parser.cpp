@@ -1,3 +1,4 @@
+#include <cctype>
 #include <iostream>
 #include <string>
 
@@ -7,6 +8,25 @@
 namespace parser
 {
 // Start of namespace "parser"
+
+/*
+ * Removes starting whitespace
+ */
+std::string remove_starting_whitespace(std::string str)
+{
+    int length = str.length();
+
+    for (int i = 0; i < length; i++)
+    {
+        if (!std::isspace(str[i]))
+        {
+            if (i == 0) { break; }
+            else { str.erase(0, i); break; }
+        }
+    }
+
+    return str;
+}
 
 /*
  * Returns the following values:
@@ -50,6 +70,8 @@ std::string get_variable_name(std::string str)
 {
     std::string var;
 
+    str = remove_starting_whitespace(str);
+
     if (str.length() > 8)
     {
         for (int i = 1; i <= 6; i++)
@@ -69,7 +91,9 @@ std::string get_variable_name(std::string str)
 std::string get_variable_value(std::string str)
 {
     std::string value;
-            int length = str.length();
+    int length = str.length();
+
+    str = remove_starting_whitespace(str);
 
     if (length > 8)
     {
@@ -90,7 +114,7 @@ std::string get_variable_value(std::string str)
 std::string get_preset_name(std::string str)
 {
     std::string name;
-            int length = str.length();
+    int length = str.length();
 
     for (int i = 1; i < length; i++)
     {
